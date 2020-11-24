@@ -7,6 +7,7 @@ export default function App() {
     <View style={styles.container}>
       <Text>Open up App.js to start working on your app!</Text>
       <Text style={{ fontSize: 30 }}>Good Bet Predictions</Text>
+      <Text style={{ fontSize: 30 }}>by Ümit Recep ÖĞÜT</Text>
       <StatusBar style='auto' />
     </View>
   );
