@@ -2,6 +2,7 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import HomeScreen from './src/screens/Home/HomeScreen';
 import LoginScreen from './src/screens/Login/LoginScreen';
+import AuthContextProvider from './src/context/authContext';
 
 const navigator = createStackNavigator(
   {
@@ -16,4 +17,8 @@ const navigator = createStackNavigator(
   }
 );
 
-export default createAppContainer(navigator);
+export default function App() {
+  return (
+    <AuthContextProvider>{createAppContainer(navigator)}</AuthContextProvider>
+  );
+}

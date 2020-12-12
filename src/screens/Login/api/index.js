@@ -1,12 +1,21 @@
-import { axios } from '../../../utils/axios/index';
+import axios from '../../../utils/axios/index';
+import * as SecureStore from 'expo-secure-store';
 
 const LoginAsync = async (username, password) => {
-  await axios
-    .post('user/login', { email: username, password: password })
-    .then((response) => {
-      return response;
-    })
-    .catch((error) => {
-      return error;
+  try {
+    const result = await axios.post('user/login', {
+      email: username,
+      password: password,
     });
+    if (!!result.data?.token) {
+      await SecureStore.setItemAsync('token', result.data.token);
+      await SecureStore.setItemAsync('email', username);
+    }
+    return true;
+  } catch (err) {
+    console.log('errrrrrrrrrrrrrrr', err);
+    return false;
+  }
 };
+
+export { LoginAsync };

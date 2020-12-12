@@ -14,19 +14,27 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import api from './api/index';
+import { LoginAsync } from './api/index';
+import authContext from '../../context/authContext';
 
-const logo = require('../../assets/images/bankomaclaricon900x900.png');
+const logo = require('../../../assets/images/bankomaclaricon900x900.png');
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const { getEmail } = useContext(authContext);
+
   console.log(email, password);
 
   const login = async () => {
-    const result = await api.LoginAsync(email, password);
-    console.log(result);
+    const result = await LoginAsync(email, password);
+    if (result) {
+      navigation.navigate('Home');
+      alert(getEmail());
+    } else {
+      alert('Kullanıcı adı veya şifre yanlış');
+    }
   };
 
   return (

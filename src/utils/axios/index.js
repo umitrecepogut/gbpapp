@@ -1,4 +1,5 @@
-import { SecureStore } from 'expo';
+import * as SecureStore from 'expo-secure-store';
+import axios from 'axios';
 
 const defaultAxiosSetup = {
   baseURL: 'https://bankomaclarapi.herokuapp.com/',
@@ -22,5 +23,21 @@ axiosInstance.interceptors.request.use(
     return Promise.reject(err);
   }
 );
+
+// axiosInstance.interceptors.response.use(
+//   (response) => {
+//     return response;
+//   },
+//   function (error) {
+//     const errorResponse = error.response;
+//     console.log(errorResponse);
+
+//     if (!!errorResponse.data) throw errorResponse.data;
+//     else {
+//       const e = { ...errorResponse, title: 'Hata', detail: error.message };
+//       throw e;
+//     }
+//   }
+// );
 
 export default axiosInstance;
