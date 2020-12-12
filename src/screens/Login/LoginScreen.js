@@ -14,6 +14,7 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
+// import api from './api/index';
 
 const logo = require('../../assets/images/bankomaclaricon900x900.png');
 
@@ -22,6 +23,11 @@ const LoginScreen = ({ navigation }) => {
   const [password, setPassword] = useState('');
 
   console.log(email, password);
+
+  // const login = async () => {
+  //   const result = await api.LoginAsync(email, password);
+  //   console.log(result);
+  // };
 
   return (
     <View style={styles.mainView}>
@@ -41,7 +47,7 @@ const LoginScreen = ({ navigation }) => {
         value={password}
         onChangeText={setPassword}
       ></TextInput>
-      <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+      <TouchableOpacity>
         <Text style={styles.btnLogin}>Login</Text>
       </TouchableOpacity>
     </View>
