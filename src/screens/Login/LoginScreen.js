@@ -1,21 +1,18 @@
 import React, {
   useState,
   useContext,
-  componentDidMount,
-  Component,
 } from 'react';
 import {
   StyleSheet,
   Text,
   View,
-  FlatList,
-  Button,
   TextInput,
   TouchableOpacity,
   Image,
 } from 'react-native';
 import { LoginAsync } from './api/index';
-import authContext from '../../context/authContext';
+
+import {AuthContext} from '../../context/authContext';
 
 const logo = require('../../../assets/images/bankomaclaricon900x900.png');
 
@@ -23,9 +20,7 @@ const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const { getEmail } = useContext(authContext);
-
-  console.log(email, password);
+  const { getEmail } = useContext(AuthContext);
 
   const login = async () => {
     const result = await LoginAsync(email, password);
