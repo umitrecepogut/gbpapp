@@ -1,34 +1,36 @@
-import React from 'react';
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
+import React, { useContext } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './src/screens/Home/HomeScreen';
 import LoginScreen from './src/screens/Login/LoginScreen';
+import SignupScreen from './src/screens/Signup/index';
+
 import AuthContextProvider from './src/context/authContext';
+import {AuthContext} from './src/context//authContext';
+import { ApplicationProvider }  from '@ui-kitten/components';
+import * as eva from '@eva-design/eva';
 
-const StackNavigator = createStackNavigator(  
-  {
-  Home: HomeScreen,
-  Login: LoginScreen,
-  },
-  {
-    initialRouteName: 'Login',
-    defaultNavigationOptions: {
-      title: 'Banko Maçlar',
-    },
-  }
-);
+const Stack = createStackNavigator();
 
-const AppContainer = createAppContainer(StackNavigator);
+const StackNavigator = () => {
+  const {isLoggedIn} = useContext(AuthContext);
+  return (
+    <Stack.Navigator headerMode="none" initialRouteName="Signup">
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Signup" component={SignupScreen} />
+    </Stack.Navigator>
+  );
+};
 
-
-
-// export default createAppContainer(navigator);
-export default class App extends React.Component {
-  render() {
+export default App = () => {
     return (
-      <AuthContextProvider>
-        <AppContainer/>
-      </AuthContextProvider>
+      <ApplicationProvider {...eva} theme={eva.light}>
+        <AuthContextProvider>
+          <NavigationContainer>
+            <StackNavigator/>
+          </NavigationContainer>
+        </AuthContextProvider>
+      </ApplicationProvider>
     );
-  }
 }

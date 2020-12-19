@@ -17,16 +17,16 @@ import {AuthContext} from '../../context/authContext';
 const logo = require('../../../assets/images/bankomaclaricon900x900.png');
 
 const LoginScreen = ({ navigation }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
 
-  const { getEmail } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const login = async () => {
     const result = await LoginAsync(email, password);
     if (result) {
       navigation.navigate('Home');
-      alert(getEmail());
+      alert(user.email);
     } else {
       alert('Kullanıcı adı veya şifre yanlış');
     }
@@ -51,7 +51,7 @@ const LoginScreen = ({ navigation }) => {
         onChangeText={setPassword}
       ></TextInput>
       <TouchableOpacity onPress={login}>
-        <Text style={styles.btnLogin}>Login</Text>
+        <Text style={styles.btnLogin}>Giriş Yap</Text>
       </TouchableOpacity>
     </View>
   );

@@ -1,29 +1,40 @@
 import React, { useState, useEffect } from 'react';
-import * as SecureStore from 'expo-secure-store';
+import {SecureStore} from 'expo-secure-store';
 
 export const AuthContext = React.createContext();
 
-export default ({ children }) => {
-  const authUser = {
-    token: SecureStore.getItemAsync('token'),
-    email: SecureStore.getItemAsync('email'),
+const AuthContextProvider = ({ children }) => {
+  const userObject = {"token":"","email":""};
+
+  const [user,setUser] = useState(undefined);
+
+  const isLoggedIn = () => {
+    return !!SecureStore.getItemAsync('token');
+  }
+
+  const authUser = () => {
+    try 
+    {
+      const token = SecureStore.getItemAsync('token');
+      const email = SecureStore.getItemAsync('email');
+      userObject.token = token;
+      userObject.email = email;
+
+      setUser(userObject);
+    } 
+    catch (error) 
+    {
+      console.log(error);
+    }
   };
 
-  const [user, setUser] = useState(authUser);
-  useEffect(() => {
-    let authUser = {
-      token: SecureStore.getItemAsync('token'),
-      email: SecureStore.getItemAsync('email'),
-    };
-    setUser(authUser);
-  }, [user]);
+  useEffect(()=>{
+    authUser();
+  },[user])
 
-  const getEmail = async () => {
-    const email = await SecureStore.getItemAsync('email');
-    return email;
-  };
   const defaultContext = {
-    getEmail,
+    isLoggedIn,
+    user,
   };
   return (
     <AuthContext.Provider value={defaultContext}>
@@ -31,3 +42,5 @@ export default ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
+export default AuthContextProvider;

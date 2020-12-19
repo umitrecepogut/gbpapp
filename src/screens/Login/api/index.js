@@ -13,7 +13,7 @@ const LoginAsync = async (username, password) => {
     }
     return true;
   } catch (err) {
-    console.log('errrrrrrrrrrrrrrr', err);
+    console.log('error', err);
     return false;
   }
 };
