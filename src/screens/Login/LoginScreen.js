@@ -1,36 +1,45 @@
 import React, {
   useState,
   useContext,
+  useEffect,
 } from 'react';
 import {
   StyleSheet,
-  Text,
   View,
   TextInput,
   TouchableOpacity,
   Image,
 } from 'react-native';
 import { LoginAsync } from './api/index';
-
 import {AuthContext} from '../../context/authContext';
+import ButtonWithSpinner from '../../components/Buttons/ButtonWithSpinner';
+import { Text } from '@ui-kitten/components';
 
 const logo = require('../../../assets/images/bankomaclaricon900x900.png');
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [isSubmitting,setIsSubmitting] = useState(false);
 
   const { user } = useContext(AuthContext);
 
   const login = async () => {
+    setIsSubmitting(true);
     const result = await LoginAsync(email, password);
     if (result) {
       navigation.navigate('Home');
       alert(user.email);
-    } else {
+    } 
+    else {
       alert('Kullanıcı adı veya şifre yanlış');
     }
+    setIsSubmitting(false);
   };
+
+  useEffect(() => {
+    setIsSubmitting(false);
+  },[])
 
   return (
     <View style={styles.mainView}>
@@ -50,14 +59,23 @@ const LoginScreen = ({ navigation }) => {
         value={password}
         onChangeText={setPassword}
       ></TextInput>
-      <TouchableOpacity onPress={login}>
-        <Text style={styles.btnLogin}>Giriş Yap</Text>
-      </TouchableOpacity>
+      <ButtonWithSpinner style={styles.btnLogin} text="Giriş Yap" isSubmitting={isSubmitting} onClick={login}/>
+      <View style={styles.textView}>
+            <TouchableOpacity onPress={()=>navigation.navigate('Signup')}>
+                <Text status="info">
+                    Kayıt Ol
+                </Text>
+            </TouchableOpacity>
+        </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  textView:{
+    alignItems:'center',
+    marginTop:12
+  },
   mainView: {
     flex: 1,
     justifyContent: 'center',
