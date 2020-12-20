@@ -1,8 +1,4 @@
-import React, {
-  useState,
-  useContext,
-  useEffect,
-} from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import {
   StyleSheet,
   View,
@@ -11,7 +7,7 @@ import {
   Image,
 } from 'react-native';
 import { LoginAsync } from './api/index';
-import {AuthContext} from '../../context/authContext';
+import { AuthContext } from '../../context/authContext';
 import ButtonWithSpinner from '../../components/Buttons/ButtonWithSpinner';
 import { Text } from '@ui-kitten/components';
 
@@ -20,7 +16,7 @@ const logo = require('../../../assets/images/bankomaclaricon900x900.png');
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [isSubmitting,setIsSubmitting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { user } = useContext(AuthContext);
 
@@ -30,8 +26,7 @@ const LoginScreen = ({ navigation }) => {
     if (result) {
       navigation.navigate('Home');
       alert(user.email);
-    } 
-    else {
+    } else {
       alert('Kullanıcı adı veya şifre yanlış');
     }
     setIsSubmitting(false);
@@ -39,7 +34,7 @@ const LoginScreen = ({ navigation }) => {
 
   useEffect(() => {
     setIsSubmitting(false);
-  },[])
+  }, []);
 
   return (
     <View style={styles.mainView}>
@@ -59,22 +54,25 @@ const LoginScreen = ({ navigation }) => {
         value={password}
         onChangeText={setPassword}
       ></TextInput>
-      <ButtonWithSpinner style={styles.btnLogin} text="Giriş Yap" isSubmitting={isSubmitting} onClick={login}/>
+      <ButtonWithSpinner
+        style={styles.btnLogin}
+        text='Giriş Yap'
+        isSubmitting={isSubmitting}
+        onClick={login}
+      />
       <View style={styles.textView}>
-            <TouchableOpacity onPress={()=>navigation.navigate('Signup')}>
-                <Text status="info">
-                    Kayıt Ol
-                </Text>
-            </TouchableOpacity>
-        </View>
+        <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
+          <Text status='info'>Kayıt Ol</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  textView:{
-    alignItems:'center',
-    marginTop:12
+  textView: {
+    alignItems: 'center',
+    marginTop: 12,
   },
   mainView: {
     flex: 1,
