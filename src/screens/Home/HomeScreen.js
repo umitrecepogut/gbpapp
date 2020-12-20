@@ -15,9 +15,9 @@ const HomeScreen = () => {
   }, []);
 
   return (
-      <ScrollView>
-        <CouponsList coupons={coupons} />
-      </ScrollView>
+    <ScrollView style={{ marginTop: 30 }}>
+      <CouponsList coupons={coupons} />
+    </ScrollView>
   );
 };
 

@@ -27,10 +27,6 @@ const MatchesList = ({ matches }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    marginBottom: 10,
-  },
-});
+const styles = StyleSheet.create({});
 
 export default MatchesList;

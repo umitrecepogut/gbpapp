@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import MatchesList from './MatchesList';
+import { round } from 'mathjs';
 
 const Coupon = ({ coupon }) => {
   return (
@@ -21,13 +22,13 @@ const Coupon = ({ coupon }) => {
               </View>
               <View style={styles.bottomRightTopRightSectionContainer}>
                 <Text style={styles.bottomRightTopRightSectionContainerText}>
-                  {coupon.totalRate}
+                  {round(coupon.totalRate, 2)}
                 </Text>
               </View>
             </View>
             <View style={styles.bottomRightBottomSectionContainer}>
               <Text style={styles.bottomRightBottomSectionContainerText}>
-                {coupon.totalScore}
+                {round(coupon.totalScore, 2)}
               </Text>
             </View>
           </View>

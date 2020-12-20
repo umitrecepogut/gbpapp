@@ -1,12 +1,28 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
+import { round } from 'mathjs';
 
 const Match = ({ match }) => {
+  var formattedDate = new Date(match.date);
+  var dateString =
+    (formattedDate.getDate() < 10 ? '0' : '') +
+    formattedDate.getDate() +
+    '.' +
+    (formattedDate.getMonth() + 1 < 10 ? '0' : '') +
+    (formattedDate.getMonth() + 1) +
+    '.' +
+    formattedDate.getFullYear() +
+    ' ' +
+    (formattedDate.getHours() < 10 ? '0' : '') +
+    formattedDate.getHours() +
+    ':' +
+    (formattedDate.getMinutes() < 10 ? '0' : '') +
+    formattedDate.getMinutes();
   return (
     <View style={styles.container}>
       <View style={styles.leftSide}>
         <View style={styles.leftTopSide}>
-          <Text style={styles.leftTopSideText}>{match.date}</Text>
+          <Text style={styles.leftTopSideText}>{dateString}</Text>
         </View>
         <View style={styles.leftBottomSide}>
           <Text style={styles.leftBottomSideText}>
@@ -20,11 +36,15 @@ const Match = ({ match }) => {
             <Text style={styles.rightTopLeftSideText}>{match.betType}</Text>
           </View>
           <View style={styles.rightTopRightSide}>
-            <Text style={styles.rightTopRightSideText}>{match.rate}</Text>
+            <Text style={styles.rightTopRightSideText}>
+              {round(match.rate, 2)}
+            </Text>
           </View>
         </View>
         <View style={styles.rightBottomSide}>
-          <Text style={styles.rightBottomSideText}>{match.score}</Text>
+          <Text style={styles.rightBottomSideText}>
+            {round(match.score, 2)}
+          </Text>
         </View>
       </View>
     </View>
