@@ -11,20 +11,14 @@ const HomeScreen = () => {
       const response = await GetCoupons();
       setCoupons(response);
     }
-  }, [coupons]);
-  console.log(coupons);
+    fetchData();
+  }, []);
 
   return (
-    <View>
-      {!!coupons && (
-        <ScrollView>
-          <CouponsList coupons={coupons} />
-        </ScrollView>
-      )}
-    </View>
+      <ScrollView>
+        <CouponsList coupons={coupons} />
+      </ScrollView>
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default HomeScreen;

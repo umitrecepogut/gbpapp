@@ -4,7 +4,7 @@ import * as SecureStore from 'expo-secure-store';
 const GetCoupons = async () => {
   try {
     const result = await axios.get('coupons');
-    return result?.data;
+    return result?.data?.coupons;
   } catch (err) {
     console.log('error', err);
     return 'Hata';

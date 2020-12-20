@@ -1,29 +1,28 @@
 import React from 'react';
 import {
   StyleSheet,
-  Text,
   View,
   FlatList,
-  TouchableOpacity,
+  Text
 } from 'react-native';
 import Coupon from './Coupon';
 
-const CouponsList = ({ coupons }) => {
-  if (!coupons.length) {
-    return null;
-  }
+const CouponsList = ({ coupons }) => {  
   return (
-    <View style={styles.container}>
-      <FlatList
-        horizontal={false}
-        showsVerticalScrollIndicator={false}
-        data={coupons}
-        keyExtractor={(coupon) => coupon._id}
-        renderItem={({ item }) => {
-          return <Coupon coupon={item} />;
-        }}
-      />
-    </View>
+    !!coupons ? (
+      <View style={styles.container}>
+        <FlatList
+          horizontal={false}
+          showsVerticalScrollIndicator={false}
+          data={coupons}
+          keyExtractor={(coupon) => coupon._id}
+          renderItem={({ item }) => {
+            return <Coupon coupon={item} />;
+          }}
+        />
+      </View>
+    ):
+    <View><Text>AMK</Text></View>
   );
 };
 

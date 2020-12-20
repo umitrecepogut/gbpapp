@@ -15,7 +15,7 @@ const Stack = createStackNavigator();
 const StackNavigator = () => {
   const {isLoggedIn} = useContext(AuthContext);
   return (
-    <Stack.Navigator headerMode="none" initialRouteName="Signup">
+    <Stack.Navigator headerMode="none" initialRouteName="Home">
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Signup" component={SignupScreen} />
