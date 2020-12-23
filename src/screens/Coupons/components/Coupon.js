@@ -28,7 +28,7 @@ const Coupon = ({ coupon }) => {
             </View>
             <View style={styles.bottomRightBottomSectionContainer}>
               <Text style={styles.bottomRightBottomSectionContainerText}>
-                {round(coupon.totalScore, 2)}
+                %{round(coupon.totalScore, 2)}
               </Text>
             </View>
           </View>
