@@ -18,14 +18,14 @@ const LoginScreen = ({ navigation }) => {
   const [password, setPassword] = useState();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const { user } = useContext(AuthContext);
+  const { setUser } = useContext(AuthContext);
 
   const login = async () => {
     setIsSubmitting(true);
     const result = await LoginAsync(email, password);
+    setUser(result);
     if (result) {
       navigation.navigate('Home');
-      alert(user.email);
     } else {
       alert('Kullanıcı adı veya şifre yanlış');
     }

@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { useState } from 'react/cjs/react.development';
 import Coupon from '../Coupons/components/Coupon';
 
-const CouponDetailScreen = ({ navigation, coupon }) => {
-  console.log(navigation);
-  console.log(coupon);
+const CouponDetailScreen = ({ route }) => {
+  const [coupon,setCoupon] = useState(null);
 
   //    getParam fonksiyonu yok
   //    coupon u burda yakalayamadım
@@ -18,16 +18,16 @@ const CouponDetailScreen = ({ navigation, coupon }) => {
 
   //    const coupon = navigation.getParam('coupon');
   //    console.log(coupon);
+  
+  useEffect(() => {
+    setCoupon(route.params?.coupon);
+  },[])
 
   return (
     <View>
-      <Text>asdasd</Text>
-      <Text>asdasd</Text>
-      <Text>asdasd</Text>
-      <Text>asdasd</Text>
-      <Text>asdasd</Text>
-      <Text>asdasd</Text>
-      {/* <Coupon coupon={coupon} /> */}
+      {!!coupon && (
+        <Coupon coupon={coupon} />
+      )}
     </View>
   );
 };

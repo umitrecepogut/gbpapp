@@ -8,8 +8,12 @@ const LoginAsync = async (username, password) => {
       password: password,
     });
     if (!!result.data?.token) {
+      alert(result.data.userId);
       await SecureStore.setItemAsync('token', result.data.token);
+      await SecureStore.setItemAsync('userId', result.data.userId);
       await SecureStore.setItemAsync('email', username);
+      const userObject = {"token":result.data.token,"email":username, "userId":result.data.userId};
+      return userObject;
     }
     return true;
   } catch (err) {

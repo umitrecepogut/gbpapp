@@ -19,7 +19,21 @@ const HomeScreen = ({ navigation }) => {
         <View style={styles.subContainer}>
           <View style={styles.labelBox}>
             <TouchableOpacity onPress={() => navigation.navigate('Coupons')}>
-              <Text style={styles.homeText}>Kuponlarımız</Text>
+              <Text style={styles.homeText}>Kuponlar</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View style={styles.subContainer}>
+          <View style={styles.labelBox}>
+            <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+              <Text style={styles.homeText}>Profil</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View style={styles.subContainer}>
+          <View style={styles.labelBox}>
+            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+              <Text style={styles.homeText}>Giriş Yap</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -40,7 +54,7 @@ const styles = StyleSheet.create({
   },
   subContainer: { flexDirection: 'row' },
   labelBox: {
-    flex: 2,
+    flex: 1,
     margin: 6,
     justifyContent: 'center',
     alignContent: 'flex-start',

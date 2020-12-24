@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import CouponCard from './CouponCard';
+import axios from '../../../utils/axios/index';
 
 const CouponCardsList = ({ coupons, navigation }) => {
   return !!coupons ? (
@@ -19,8 +20,12 @@ const CouponCardsList = ({ coupons, navigation }) => {
         renderItem={({ item }) => {
           return (
             <TouchableOpacity
-              onPress={() =>
-                navigation.navigate('CouponDetail', { coupon: item })
+              onPress={() => {
+                axios.get(`/coupons/${item._id}`)
+                .then(response => {
+                  navigation.navigate('CouponDetail', { coupon: response.data })
+                })
+              }
               }
             >
               <CouponCard coupon={item} />

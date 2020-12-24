@@ -6,6 +6,7 @@ import LoginScreen from './src/screens/Login/LoginScreen';
 import SignupScreen from './src/screens/Signup/index';
 import CouponsScreen from './src/screens/Coupons/CouponsScreen';
 import CouponDetailScreen from './src/screens/CouponDetail/CouponDetailScreen';
+import ProfileScreen from './src/screens/Profile/ProfileScreen';
 
 import AuthContextProvider from './src/context/authContext';
 import { AuthContext } from './src/context//authContext';
@@ -16,13 +17,15 @@ const Stack = createStackNavigator();
 
 const StackNavigator = () => {
   const { isLoggedIn } = useContext(AuthContext);
+  // {isLoggedIn() === false ? 'Login' : 'Home'}
   return (
-    <Stack.Navigator headerMode='none' initialRouteName='Home'>
+    <Stack.Navigator initialRouteName='Home'>
       <Stack.Screen name='Login' component={LoginScreen} />
       <Stack.Screen name='Home' component={HomeScreen} />
       <Stack.Screen name='Signup' component={SignupScreen} />
       <Stack.Screen name='Coupons' component={CouponsScreen} />
       <Stack.Screen name='CouponDetail' component={CouponDetailScreen} />
+      <Stack.Screen name='Profile' component={ProfileScreen} />
     </Stack.Navigator>
   );
 };
