@@ -4,9 +4,9 @@
     "slug": "gbpapp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/ball.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/ball.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -18,7 +18,7 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.umitsoft.bankomaclar",
+      "package": "com.umitsoft.bankotahminler",
       "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
@@ -26,7 +26,7 @@
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/ball.png"
     }
   }
 }
