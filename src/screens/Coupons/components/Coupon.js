@@ -1,24 +1,25 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import MatchesList from './MatchesList';
 import { round } from 'mathjs';
-import {AuthContext} from '../../../context/authContext';
+import { AuthContext } from '../../../context/authContext';
 import axios from '../../../utils/axios/index';
 
 const Coupon = ({ coupon }) => {
-  const [isFavorite,setIsFavorite] = useState();
-  const {userId} = useContext(AuthContext);
+  const [isFavorite, setIsFavorite] = useState();
+  const { userId } = useContext(AuthContext);
 
   useEffect(() => {
-    coupon.favUsers.includes(userId) ? setIsFavorite(true) : setIsFavorite(false);
-  },[]);
+    coupon.favUsers.includes(userId)
+      ? setIsFavorite(true)
+      : setIsFavorite(false);
+  }, []);
 
   const addToFavorites = () => {
-    axios.put('/coupons',{"couponId": coupon._id, "userId":userId})
-      .then(() => {
-        setIsFavorite(true);
-      })
-  }
+    axios.put('/coupons', { couponId: coupon._id, userId: userId }).then(() => {
+      setIsFavorite(true);
+    });
+  };
 
   return (
     <View style={styles.container}>
@@ -50,7 +51,12 @@ const Coupon = ({ coupon }) => {
           </View>
         </View>
       </View>
-      <Button title="Favori butonu" onPress={addToFavorites} color={isFavorite ? 'red' : 'blue'}/>
+      <Button
+        style={styles.favButton}
+        title='Favorilere Ekle'
+        onPress={addToFavorites}
+        color={isFavorite ? '#27ae60' : '#2980b9'}
+      />
     </View>
   );
 };
@@ -115,7 +121,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#34495e',
     justifyContent: 'center',
-    padding: 3,
+    padding: 13,
     marginLeft: 5,
     marginRight: 5,
     marginBottom: 5,

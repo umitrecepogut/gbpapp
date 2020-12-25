@@ -19,13 +19,91 @@ const StackNavigator = () => {
   const { isLoggedIn } = useContext(AuthContext);
   // {isLoggedIn() === false ? 'Login' : 'Home'}
   return (
-    <Stack.Navigator initialRouteName='Home'>
-      <Stack.Screen name='Login' component={LoginScreen} />
-      <Stack.Screen name='Home' component={HomeScreen} />
-      <Stack.Screen name='Signup' component={SignupScreen} />
-      <Stack.Screen name='Coupons' component={CouponsScreen} />
-      <Stack.Screen name='CouponDetail' component={CouponDetailScreen} />
-      <Stack.Screen name='Profile' component={ProfileScreen} />
+    <Stack.Navigator initialRouteName='Login'>
+      <Stack.Screen
+        name='Login'
+        component={LoginScreen}
+        options={{
+          title: 'Giriş Yap',
+          headerStyle: {
+            backgroundColor: '#763626',
+          },
+          headerTintColor: '#ecf0f1',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      />
+      <Stack.Screen
+        name='Home'
+        component={HomeScreen}
+        options={{
+          title: 'Ana Sayfa',
+          headerStyle: {
+            backgroundColor: '#763626',
+          },
+          headerTintColor: '#ecf0f1',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      />
+      <Stack.Screen
+        name='Signup'
+        component={SignupScreen}
+        options={{
+          title: 'Kayıt Ol',
+          headerStyle: {
+            backgroundColor: '#763626',
+          },
+          headerTintColor: '#ecf0f1',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      />
+      <Stack.Screen
+        name='Coupons'
+        component={CouponsScreen}
+        options={{
+          title: 'Kuponlar',
+          headerStyle: {
+            backgroundColor: '#763626',
+          },
+          headerTintColor: '#ecf0f1',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      />
+      <Stack.Screen
+        name='CouponDetail'
+        component={CouponDetailScreen}
+        options={{
+          title: 'Kupon Detayları',
+          headerStyle: {
+            backgroundColor: '#763626',
+          },
+          headerTintColor: '#ecf0f1',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      />
+      <Stack.Screen
+        name='Profile'
+        component={ProfileScreen}
+        options={{
+          title: 'Profil',
+          headerStyle: {
+            backgroundColor: '#763626',
+          },
+          headerTintColor: '#ecf0f1',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      />
     </Stack.Navigator>
   );
 };

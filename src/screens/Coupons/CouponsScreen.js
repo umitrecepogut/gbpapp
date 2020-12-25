@@ -16,11 +16,9 @@ const CouponsScreen = ({ navigation }) => {
   }, []);
 
   return (
-    <View>
-      <ScrollView style={{ marginBottom: 60 }}>
-        <CouponCardsList navigation={navigation} coupons={coupons} />
-      </ScrollView>
-    </View>
+    <ScrollView>
+      <CouponCardsList navigation={navigation} coupons={coupons} />
+    </ScrollView>
   );
 };
 

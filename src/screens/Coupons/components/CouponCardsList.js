@@ -21,12 +21,12 @@ const CouponCardsList = ({ coupons, navigation }) => {
           return (
             <TouchableOpacity
               onPress={() => {
-                axios.get(`/coupons/${item._id}`)
-                .then(response => {
-                  navigation.navigate('CouponDetail', { coupon: response.data })
-                })
-              }
-              }
+                axios.get(`/coupons/${item._id}`).then((response) => {
+                  navigation.navigate('CouponDetail', {
+                    coupon: response.data,
+                  });
+                });
+              }}
             >
               <CouponCard coupon={item} />
             </TouchableOpacity>
@@ -36,7 +36,7 @@ const CouponCardsList = ({ coupons, navigation }) => {
     </View>
   ) : (
     <View>
-      <Text>Kupon bulunamadı.</Text>
+      <Text></Text>
     </View>
   );
 };

@@ -43,7 +43,7 @@ const Match = ({ match }) => {
         </View>
         <View style={styles.rightBottomSide}>
           <Text style={styles.rightBottomSideText}>
-            {round(match.score, 2)}
+            %{round(match.score, 2)}
           </Text>
         </View>
       </View>
