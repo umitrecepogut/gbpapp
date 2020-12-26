@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderColor: '#7f8c8d',
     fontSize: 18,
-    color: '#2c3e50',
+    color: '#34495e',
   },
   txtPassword: {
     marginHorizontal: 20,
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderColor: '#7f8c8d',
     fontSize: 18,
-    color: '#2c3e50',
+    color: '#34495e',
   },
   btnSignup: {
     textAlign: 'center',
