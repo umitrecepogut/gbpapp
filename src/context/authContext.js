@@ -7,7 +7,7 @@ const AuthContextProvider = ({ children }) => {
   const userObject = { token: '', email: '', userId: '' };
 
   const [user, setUser] = useState(undefined);
-  const isLoggedIn = async () => !!(await AsyncStorage.getItem('token') ? true : false);
+  const isLoggedIn = !!user?.token;
 
   const userId = user?.userId;
   const email = user?.email;
@@ -16,7 +16,7 @@ const AuthContextProvider = ({ children }) => {
     try {
       const token = await AsyncStorage.getItem('token');
       const email = await AsyncStorage.getItem('email');
-      const id = await AsyncStorage.getItem('userId');
+      const id =    await AsyncStorage.getItem('userId');
       userObject.token = token;
       userObject.email = email;
       userObject.userId = id;
@@ -25,6 +25,7 @@ const AuthContextProvider = ({ children }) => {
       console.log(error);
     }
   };
+
 
   useEffect(() => {
     authUser();

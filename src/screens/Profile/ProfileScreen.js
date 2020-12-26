@@ -14,20 +14,21 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 const ProfileScreen = ({ navigation }) => {
   const [coupons, setCoupons] = useState(null);
-  const { userId } = useContext(AuthContext);
-  const { email } = useContext(AuthContext);
+  const { userId, email, isLoggedIn } = useContext(AuthContext);
 
   useEffect(() => {
-    const fetchData = async () => {
-      await axios.get('/coupons').then((response) => {
-        setCoupons(
-          response.data.coupons.filter((coupon) =>
-            coupon.favUsers.includes(userId)
-          )
-        );
-      });
-    };
-    fetchData();
+    if(isLoggedIn){
+      const fetchData = async () => {
+        await axios.get('/coupons').then((response) => {
+          setCoupons(
+            response.data.coupons.filter((coupon) =>
+              coupon.favUsers.includes(userId)
+            )
+          );
+        });
+      };
+      fetchData();
+    }
   }, []);
 
   return (

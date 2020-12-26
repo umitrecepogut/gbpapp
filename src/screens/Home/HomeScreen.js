@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,10 +7,14 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { AuthContext } from '../../context/authContext';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const bgImage = require('../../../assets/images/soccer_field_stadium-wallpaper-480x854.png');
 
 const HomeScreen = ({ navigation }) => {
+  const {setUser, isLoggedIn} = useContext(AuthContext);
+
   return (
     <View style={styles.container}>
       <ImageBackground source={bgImage} style={styles.backgroundImage}>
@@ -46,9 +50,24 @@ const HomeScreen = ({ navigation }) => {
           </View>
           <View style={{}}>
             <View style={styles.loginLabelBox}>
-              <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+              <TouchableOpacity onPress={async () => {
+                if(!isLoggedIn)
+                {
+                  alert('Giriş yapılmamış.');
+                }
+                else
+                {
+                  await AsyncStorage.removeItem('token');
+                  await AsyncStorage.removeItem('email');
+                  await AsyncStorage.removeItem('userId');
+                  setUser(undefined);
+                  alert('Çıkış yapıldı.');
+                }
+                
+              }}>
                 <Text style={styles.loginText}>
-                  <Icon name='sign-out' size={35} color='#ffffff' />
+                  {/* <Icon name='sign-out' size={35} color='#ffffff' /> */}
+                  Çıkış
                 </Text>
               </TouchableOpacity>
             </View>
@@ -63,7 +82,7 @@ const HomeScreen = ({ navigation }) => {
                   alignItems: 'center',
                   alignSelf: 'center',
                 }}
-                onPress={() => navigation.navigate('Coupons')}
+                onPress={() => {isLoggedIn ? navigation.navigate('Coupons') : alert('Giriş yapmalısınız !')}}
               >
                 <Icon
                   style={{
@@ -88,7 +107,7 @@ const HomeScreen = ({ navigation }) => {
                   alignItems: 'center',
                   alignSelf: 'center',
                 }}
-                onPress={() => navigation.navigate('Profile')}
+                onPress={() => {isLoggedIn ? navigation.navigate('Profile') : alert('Giriş yapmalısınız !')}}
               >
                 <Icon style={styles.iconText} name='id-card' color='#ffffff' />
                 <Text style={styles.homeText}>Profil</Text>
