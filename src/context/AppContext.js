@@ -1,13 +1,18 @@
-import React from 'react';
-import App from '../../App';
+import React, { useState } from 'react';
 
-
-const AppContext = React.createContext({});
+export const AppContext = React.createContext({});
 
 
 const AppContextProvider = ({children}) => {
+
+    const [notificationId, setNotificationId] = useState(null);
+    
+    const defaultContext = {
+        notificationId,
+        setNotificationId,
+    };
     return (
-        <AppContext.Provider>
+        <AppContext.Provider value={defaultContext}>
             {children}
         </AppContext.Provider>
     )

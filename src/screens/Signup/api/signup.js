@@ -1,10 +1,11 @@
 import axios from '../../../utils/axios/index';
 
-const SignupAsync = async (username, password) => {
+const SignupAsync = async (username, password, notificationId) => {
     try {
         await axios.post('user/signup', {
             email: username,
             password: password,
+            notificationId: notificationId
         });
         return true;
     } 
