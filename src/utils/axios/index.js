@@ -1,4 +1,4 @@
-import * as SecureStore from 'expo-secure-store';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
 const defaultAxiosSetup = {
@@ -10,7 +10,7 @@ const axiosInstance = axios.create(defaultAxiosSetup);
 
 axiosInstance.interceptors.request.use(
   async function (config) {
-    const tokens = await SecureStore.getItemAsync('token');
+    const tokens = await AsyncStorage.getItem('token');
     const token = !!tokens ? tokens : null;
 
     if (token) {

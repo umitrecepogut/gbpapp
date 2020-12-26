@@ -1,5 +1,4 @@
 import axios from '../../../utils/axios/index';
-import * as SecureStore from 'expo-secure-store';
 
 const GetCoupons = async () => {
   try {

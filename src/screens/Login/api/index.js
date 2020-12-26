@@ -1,5 +1,5 @@
 import axios from '../../../utils/axios/index';
-import * as SecureStore from 'expo-secure-store';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoginAsync = async (username, password) => {
   try {
@@ -8,9 +8,9 @@ const LoginAsync = async (username, password) => {
       password: password,
     });
     if (!!result.data?.token) {
-      await SecureStore.setItemAsync('token', result.data.token);
-      await SecureStore.setItemAsync('userId', result.data.userId);
-      await SecureStore.setItemAsync('email', username);
+      await AsyncStorage.setItem('token', result.data.token);
+      await AsyncStorage.setItem('userId', result.data.userId);
+      await AsyncStorage.setItem('email', username);
       const userObject = {
         token: result.data.token,
         email: username,

@@ -9,7 +9,7 @@ import CouponDetailScreen from './src/screens/CouponDetail/CouponDetailScreen';
 import ProfileScreen from './src/screens/Profile/ProfileScreen';
 
 import AuthContextProvider from './src/context/authContext';
-import { AuthContext } from './src/context//authContext';
+import { AuthContext } from './src/context/authContext';
 import { ApplicationProvider } from '@ui-kitten/components';
 import * as eva from '@eva-design/eva';
 
@@ -28,8 +28,10 @@ const Stack = createStackNavigator();
 
 const StackNavigator = () => {
 
+  const { isLoggedIn } = useContext(AuthContext);
+
   return (
-    <Stack.Navigator initialRouteName='Home'>
+    <Stack.Navigator initialRouteName={ isLoggedIn ? 'Home' : 'Login'}>
       <Stack.Screen
         name='Login'
         component={LoginScreen}

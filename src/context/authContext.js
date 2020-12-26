@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { SecureStore } from 'expo-secure-store';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const AuthContext = React.createContext();
 
@@ -7,19 +7,19 @@ const AuthContextProvider = ({ children }) => {
   const userObject = { token: '', email: '', userId: '' };
 
   const [user, setUser] = useState(undefined);
-  const isLoggedIn = () => (!!SecureStore.getItemAsync('token') ? true : false);
+  const isLoggedIn = async () => !!(await AsyncStorage.getItem('token') ? true : false);
 
   const userId = user?.userId;
   const email = user?.email;
 
-  const authUser = () => {
+  const authUser = async () => {
     try {
-      const token = SecureStore.getItemAsync('token');
-      const email = SecureStore.getItemAsync('email');
-      const id = SecureStore.getItemAsync('userId');
+      const token = await AsyncStorage.getItem('token');
+      const email = await AsyncStorage.getItem('email');
+      const id = await AsyncStorage.getItem('userId');
       userObject.token = token;
       userObject.email = email;
-      userObject.userId = email;
+      userObject.userId = id;
       setUser(userObject);
     } catch (error) {
       console.log(error);
