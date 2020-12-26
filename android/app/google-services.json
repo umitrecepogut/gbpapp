@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "432493882357",
+    "project_id": "gb-prediction",
+    "storage_bucket": "gb-prediction.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:432493882357:android:adbe002757c8ab48810ebc",
+        "android_client_info": {
+          "package_name": "com.umitsoft.bankomaclar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "432493882357-rkspln8dkseqvkde99vjjoel5b717ff0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-SIHSBBCCFUfxhw1CwIJzJX1V5V3DxTQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "432493882357-rkspln8dkseqvkde99vjjoel5b717ff0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './src/screens/Home/HomeScreen';
@@ -13,13 +13,20 @@ import { AuthContext } from './src/context//authContext';
 import { ApplicationProvider } from '@ui-kitten/components';
 import * as eva from '@eva-design/eva';
 
+import {Permissions,Notifications} from 'expo';
+import RNFirebase from 'react-native-firebase';
+
 const Stack = createStackNavigator();
 
 const StackNavigator = () => {
-  const { isLoggedIn } = useContext(AuthContext);
+  const [loggedIn,setLoggedIn] = useState(null);
+  useEffect(() => {
+    const { isLoggedIn } = useContext(AuthContext);
+    setLoggedIn(isLoggedIn());
+  }, [input])
   // {isLoggedIn() === false ? 'Login' : 'Home'}
   return (
-    <Stack.Navigator initialRouteName='Login'>
+    <Stack.Navigator initialRouteName={loggedIn === true ? 'Coupons' : 'Home'}>
       <Stack.Screen
         name='Login'
         component={LoginScreen}
