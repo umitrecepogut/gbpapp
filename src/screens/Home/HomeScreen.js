@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React from 'react';
 import {
   StyleSheet,
   Text,
@@ -17,17 +17,38 @@ const HomeScreen = ({ navigation }) => {
         <View
           style={{
             top: 0,
-            width: 70,
             right: 0,
-            marginBottom: 150,
-            alignSelf: 'flex-end',
+            marginBottom: 160,
+            flexDirection: 'row',
           }}
         >
-          <View style={styles.loginContainer}>
+          <View
+            style={{
+              flex: 1,
+              alignSelf: 'flex-start',
+              flexDirection: 'row',
+            }}
+          >
+            <View style={styles.loginLabelBox}>
+              <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
+                <Text style={styles.loginText}>
+                  <Icon name='user-plus' size={35} color='#ffffff' />
+                </Text>
+              </TouchableOpacity>
+            </View>
             <View style={styles.loginLabelBox}>
               <TouchableOpacity onPress={() => navigation.navigate('Login')}>
                 <Text style={styles.loginText}>
-                  <Icon name='sign-in' size={33} color='#ffffff' />
+                  <Icon name='sign-in' size={35} color='#ffffff' />
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View style={{}}>
+            <View style={styles.loginLabelBox}>
+              <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+                <Text style={styles.loginText}>
+                  <Icon name='sign-out' size={35} color='#ffffff' />
                 </Text>
               </TouchableOpacity>
             </View>
@@ -36,15 +57,39 @@ const HomeScreen = ({ navigation }) => {
         <View style={styles.container}>
           <View style={styles.subContainer}>
             <View style={styles.labelBox}>
-              <TouchableOpacity onPress={() => navigation.navigate('Coupons')}>
-                <Icon style={styles.iconText} name='list-alt' color='#ffffff' />
+              <TouchableOpacity
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  alignSelf: 'center',
+                }}
+                onPress={() => navigation.navigate('Coupons')}
+              >
+                <Icon
+                  style={{
+                    flex: 1,
+                    fontSize: 52,
+                    color: '#ecf0f1',
+                    fontWeight: 'bold',
+                    textAlign: 'right',
+                  }}
+                  name='list-alt'
+                  color='#ffffff'
+                />
                 <Text style={styles.homeText}>Kuponlar</Text>
               </TouchableOpacity>
             </View>
           </View>
           <View style={styles.subContainer}>
             <View style={styles.labelBox}>
-              <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+              <TouchableOpacity
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  alignSelf: 'center',
+                }}
+                onPress={() => navigation.navigate('Profile')}
+              >
                 <Icon style={styles.iconText} name='id-card' color='#ffffff' />
                 <Text style={styles.homeText}>Profil</Text>
               </TouchableOpacity>
@@ -69,10 +114,8 @@ const styles = StyleSheet.create({
   subContainer: { flexDirection: 'row' },
   loginContainer: { flexDirection: 'row' },
   loginLabelBox: {
-    flex: 1,
     margin: 2,
     justifyContent: 'center',
-    alignContent: 'flex-start',
     borderStyle: 'solid',
     borderColor: '#2c3e50',
     borderWidth: 2,
@@ -80,7 +123,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#34495ebb',
     marginVertical: 3,
     height: 50,
-    padding: 3,
+    padding: 5,
+    width: 60,
   },
   loginText: {
     fontSize: 20,
@@ -103,16 +147,19 @@ const styles = StyleSheet.create({
     padding: 6,
   },
   homeText: {
-    fontSize: 25,
+    flex: 4,
+    fontSize: 35,
     color: '#ecf0f1',
     fontWeight: 'bold',
-    textAlign: 'center',
+    textAlign: 'left',
+    marginLeft: 10,
   },
   iconText: {
+    flex: 1,
     fontSize: 45,
     color: '#ecf0f1',
     fontWeight: 'bold',
-    textAlign: 'center',
+    textAlign: 'right',
   },
 });
 
