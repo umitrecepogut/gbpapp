@@ -9,7 +9,9 @@ const CouponDetailScreen = ({ route }) => {
     setCoupon(route.params?.coupon);
   }, []);
 
-  return <View>{!!coupon && <Coupon coupon={coupon} />}</View>;
+  return (
+    <ScrollView style={{}}>{!!coupon && <Coupon coupon={coupon} />}</ScrollView>
+  );
 };
 
 export default CouponDetailScreen;

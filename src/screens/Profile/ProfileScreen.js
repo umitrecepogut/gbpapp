@@ -17,8 +17,7 @@ const ProfileScreen = ({ navigation }) => {
     const { userId } = useContext(AuthContext);
     const { email } = useContext(AuthContext);
 
-    console.log(email);
-    useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
         await axios.get('/coupons').then((response) => {
         setCoupons(
@@ -35,13 +34,13 @@ const ProfileScreen = ({ navigation }) => {
     <SafeAreaView style={{}}>
         <View
         style={{
-            borderColor: '#34495e',
-            backgroundColor: '#34495e',
-            borderStyle: 'solid',
-            borderWidth: 2,
-            borderRadius: 20,
-            margin: 2,
-            padding: 10,
+          borderColor: '#34495e',
+          backgroundColor: '#34495e',
+          borderStyle: 'solid',
+          borderWidth: 2,
+          borderRadius: 10,
+          margin: 2,
+          padding: 4,
         }}
         >
         <View>

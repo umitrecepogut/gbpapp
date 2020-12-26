@@ -3,14 +3,10 @@ import {
   StyleSheet,
   Text,
   View,
-  ScrollView,
-  Image,
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
-import Header from 'react-native-custom-header';
 
 const bgImage = require('../../../assets/images/soccer_field_stadium-wallpaper-480x854.png');
 
@@ -31,7 +27,7 @@ const HomeScreen = ({ navigation }) => {
             <View style={styles.loginLabelBox}>
               <TouchableOpacity onPress={() => navigation.navigate('Login')}>
                 <Text style={styles.loginText}>
-                  <Icon name='user-plus' size={33} color='#ffffff' />
+                  <Icon name='sign-in' size={33} color='#ffffff' />
                 </Text>
               </TouchableOpacity>
             </View>
