@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
-import { useState } from 'react/cjs/react.development';
 import Coupon from '../Coupons/components/Coupon';
 
 const CouponDetailScreen = ({ route }) => {
