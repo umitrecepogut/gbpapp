@@ -17,7 +17,6 @@ const ProfileScreen = ({ navigation }) => {
   const { userId } = useContext(AuthContext);
   const { email } = useContext(AuthContext);
 
-  console.log(email);
   useEffect(() => {
     const fetchData = async () => {
       await axios.get('/coupons').then((response) => {
@@ -39,9 +38,9 @@ const ProfileScreen = ({ navigation }) => {
           backgroundColor: '#34495e',
           borderStyle: 'solid',
           borderWidth: 2,
-          borderRadius: 20,
+          borderRadius: 10,
           margin: 2,
-          padding: 10,
+          padding: 4,
         }}
       >
         <View>
@@ -133,9 +132,9 @@ const ProfileScreen = ({ navigation }) => {
           backgroundColor: '#34495e',
           borderStyle: 'solid',
           borderWidth: 2,
-          borderRadius: 20,
+          borderRadius: 10,
           margin: 2,
-          padding: 10,
+          padding: 4,
         }}
       >
         <View>
