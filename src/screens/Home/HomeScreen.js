@@ -13,7 +13,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const bgImage = require('../../../assets/images/soccer_field_stadium-wallpaper-480x854.png');
 
 const HomeScreen = ({ navigation }) => {
-  const {setUser, isLoggedIn} = useContext(AuthContext);
+  const { setUser, isLoggedIn } = useContext(AuthContext);
 
   return (
     <View style={styles.container}>
@@ -50,21 +50,19 @@ const HomeScreen = ({ navigation }) => {
           </View>
           <View style={{}}>
             <View style={styles.loginLabelBox}>
-              <TouchableOpacity onPress={async () => {
-                if(!isLoggedIn)
-                {
-                  alert('Giriş yapılmamış.');
-                }
-                else
-                {
-                  await AsyncStorage.removeItem('token');
-                  await AsyncStorage.removeItem('email');
-                  await AsyncStorage.removeItem('userId');
-                  setUser(undefined);
-                  alert('Çıkış yapıldı.');
-                }
-                
-              }}>
+              <TouchableOpacity
+                onPress={async () => {
+                  if (!isLoggedIn) {
+                    alert('Giriş yapılmamış.');
+                  } else {
+                    await AsyncStorage.removeItem('token');
+                    await AsyncStorage.removeItem('email');
+                    await AsyncStorage.removeItem('userId');
+                    setUser(undefined);
+                    alert('Çıkış yapıldı.');
+                  }
+                }}
+              >
                 <Text style={styles.loginText}>
                   {/* <Icon name='sign-out' size={35} color='#ffffff' /> */}
                   Çıkış
@@ -82,7 +80,11 @@ const HomeScreen = ({ navigation }) => {
                   alignItems: 'center',
                   alignSelf: 'center',
                 }}
-                onPress={() => {isLoggedIn ? navigation.navigate('Coupons') : alert('Giriş yapmalısınız !')}}
+                onPress={() => {
+                  isLoggedIn
+                    ? navigation.navigate('Coupons')
+                    : alert('Giriş yapmalısınız !');
+                }}
               >
                 <Icon
                   style={{
@@ -107,7 +109,11 @@ const HomeScreen = ({ navigation }) => {
                   alignItems: 'center',
                   alignSelf: 'center',
                 }}
-                onPress={() => {isLoggedIn ? navigation.navigate('Profile') : alert('Giriş yapmalısınız !')}}
+                onPress={() => {
+                  isLoggedIn
+                    ? navigation.navigate('Profile')
+                    : alert('Giriş yapmalısınız !');
+                }}
               >
                 <Icon style={styles.iconText} name='id-card' color='#ffffff' />
                 <Text style={styles.homeText}>Profil</Text>
