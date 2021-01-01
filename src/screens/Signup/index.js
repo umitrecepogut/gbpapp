@@ -12,44 +12,6 @@ import { AuthContext } from '../../context/authContext';
 import ButtonWithSpinner from '../../components/Buttons/ButtonWithSpinner';
 import { Text } from '@ui-kitten/components';
 
-import * as Notifications from 'expo-notifications';
-import * as Permissions from 'expo-permissions';
-
-Notifications.setNotificationHandler({
-  handleNotification: async () => ({
-    shouldShowAlert: true,
-    shouldPlaySound: false,
-    shouldSetBadge: false,
-  }),
-});
-
-async function registerForPushNotificationsAsync() {
-  let token;
-  const { status: existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
-  let finalStatus = existingStatus;
-  if (existingStatus !== 'granted') {
-    const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
-    finalStatus = status;
-  }
-  if (finalStatus !== 'granted') {
-    alert('Failed to get push token for push notification!');
-    return;
-  }
-  token = (await Notifications.getExpoPushTokenAsync()).data;
-  
-  if (Platform.OS === 'android') {
-    Notifications.setNotificationChannelAsync('default', {
-      name: 'default',
-      importance: Notifications.AndroidImportance.MAX,
-      vibrationPattern: [0, 250, 250, 250],
-      lightColor: '#FF231F7C',
-    });
-  }
-  
-  return token;
-}
-
-
 const bgImage = require('../../../assets/images/wp6987433.png');
 const logo = require('../../../assets/images/bankomaclariconcoz.png');
 
@@ -62,8 +24,7 @@ const Signup = ({ navigation }) => {
 
   const signup = async () => {
     setIsSubmitting(true);
-    const notificationId = await registerForPushNotificationsAsync();
-    const result = await SignupAsync(email, password, notificationId);
+    const result = await SignupAsync(email, password);
     if (result) {
       navigation.navigate('Login');
     } else {
@@ -71,32 +32,6 @@ const Signup = ({ navigation }) => {
     }
     setIsSubmitting(false);
   };
-
-  const [expoPushToken, setExpoPushToken] = useState('');
-  const [notification, setNotification] = useState(false);
-  const notificationListener = useRef();
-  const responseListener = useRef();
-
-
-  useEffect(() => {
-    registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
-
-    // This listener is fired whenever a notification is received while the app is foregrounded
-    notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
-      setNotification(notification);
-    });
-
-    // This listener is fired whenever a user taps on or interacts with a notification (works when app is foregrounded, backgrounded, or killed)
-    responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
-      console.log(response);
-    });
-
-    return () => {
-      Notifications.removeNotificationSubscription(notificationListener);
-      Notifications.removeNotificationSubscription(responseListener);
-    };
-    setIsSubmitting(false);
-  }, []);
 
   return (
     <View style={styles.container}>

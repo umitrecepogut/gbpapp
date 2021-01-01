@@ -4,6 +4,7 @@
     "slug": "gbpapp",
     "version": "1.0.0",
     "orientation": "portrait",
+
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
@@ -16,7 +17,7 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.umitsoft.bankomaclar"
+      "bundleIdentifier": "com.btsoft.bankotahminler"
     },
     "android": {
       "package": "com.btsoft.bankotahminler",

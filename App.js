@@ -1,12 +1,19 @@
+/*
+Ümit Recep Öğüt
+Nurettin Kerem Dokumacı
+Hakan Ateşli
+*/
+
 import React, { useContext, useState, useEffect, useRef } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import SignupScreen from './src/screens/Signup/index';
 import HomeScreen from './src/screens/Home/HomeScreen';
 import LoginScreen from './src/screens/Login/LoginScreen';
-import SignupScreen from './src/screens/Signup/index';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import CouponsScreen from './src/screens/Coupons/CouponsScreen';
-import CouponDetailScreen from './src/screens/CouponDetail/CouponDetailScreen';
 import ProfileScreen from './src/screens/Profile/ProfileScreen';
+import CouponDetailScreen from './src/screens/CouponDetail/CouponDetailScreen';
+
 
 import AuthContextProvider from './src/context/authContext';
 import { AuthContext } from './src/context/authContext';
